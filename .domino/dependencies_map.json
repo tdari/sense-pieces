@@ -5,11 +5,12 @@
             "requirements_file": "requirements_0.txt"
         },
         "pieces": [
-            "ExampleSimplePiece"
+            "ReloadPiece"
         ],
         "secrets": [
-            "EXAMPLE_OPERATOR_SECRET_1"
+            "BEARER_TOKEN",
+            "TENANT_URL"
         ],
-        "source_image": "ghcr.io/enter-your-registry-name-here/enter-your-repository-name-here:0.1.0-group0"
+        "source_image": "ghcr.io/tdari/sense-pieces:0.1.0-group0"
     }
 }
