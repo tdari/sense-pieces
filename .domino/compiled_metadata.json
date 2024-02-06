@@ -1,110 +1,87 @@
 {
-    "ExampleSimplePiece": {
-        "name": "ExampleSimplePiece",
+    "ReloadPiece": {
+        "name": "ReloadPiece",
         "dependency": {
             "dockerfile": null,
             "requirements_file": "requirements_0.txt"
         },
         "tags": [
-            "Example"
+            "qlik"
         ],
         "style": {
-            "node_label": "Simple Piece",
+            "node_label": "Reload Piece",
             "node_type": "default",
             "node_style": {
                 "backgroundColor": "#ebebeb"
             },
             "useIcon": true,
-            "icon_class_name": "fas fa-database",
+            "icon_class_name": "fa-solid fa-rotate-right",
             "iconStyle": {
                 "cursor": "pointer"
             }
         },
-        "description": "This is an example of a simple Domino Piece",
+        "description": "Reloads an app.",
         "container_resources": {
             "requests": {
-                "cpu": "100m",
-                "memory": "128Mi"
+                "cpu": 100,
+                "memory": 128
             },
             "limits": {
-                "cpu": "500m",
-                "memory": "512Mi"
+                "cpu": 500,
+                "memory": 512
             }
         },
         "input_schema": {
-            "title": "InputModel",
-            "type": "object",
+            "description": "Reload Piece Input Model",
             "properties": {
-                "distribution_name": {
-                    "description": "Name of the distribution to sample from",
-                    "allOf": [
-                        {
-                            "$ref": "#/definitions/DistributionType"
-                        }
-                    ]
-                },
-                "distribution_mean": {
-                    "title": "Distribution Mean",
-                    "description": "Distribution mean",
-                    "type": "number"
-                },
-                "distribution_sd": {
-                    "title": "Distribution Sd",
-                    "description": "Distribution standard deviation",
-                    "default": 1.0,
-                    "exclusiveMinimum": 0.0,
-                    "type": "number"
+                "app_id": {
+                    "description": "App ID to be reloaded",
+                    "title": "App Id",
+                    "type": "string"
                 }
             },
             "required": [
-                "distribution_name",
-                "distribution_mean"
+                "app_id"
             ],
-            "definitions": {
-                "DistributionType": {
-                    "title": "DistributionType",
-                    "description": "An enumeration.",
-                    "enum": [
-                        "gaussian",
-                        "poisson"
-                    ],
-                    "type": "string"
-                }
-            }
+            "title": "InputModel",
+            "type": "object"
         },
         "output_schema": {
-            "title": "OutputModel",
-            "type": "object",
+            "description": "Reload Piece Output Model",
             "properties": {
                 "message": {
+                    "description": "Reload piece executed",
                     "title": "Message",
-                    "description": "Output message to log",
-                    "type": "string"
-                },
-                "sample_result": {
-                    "title": "Sample Result",
-                    "description": "The result of this Piece's processing",
                     "type": "string"
                 }
             },
             "required": [
-                "message",
-                "sample_result"
-            ]
+                "message"
+            ],
+            "title": "OutputModel",
+            "type": "object"
         },
         "secrets_schema": {
-            "title": "SecretsModel",
-            "type": "object",
+            "description": "Get Secrets",
             "properties": {
-                "EXAMPLE_OPERATOR_SECRET_1": {
-                    "title": "Example Operator Secret 1",
-                    "description": "A secret necessary to run this Piece",
+                "BEARER_TOKEN": {
+                    "description": "Bearer token",
+                    "title": "Bearer Token",
+                    "type": "string"
+                },
+                "TENANT_URL": {
+                    "description": "Qlik Cloud tenant url",
+                    "title": "Tenant Url",
                     "type": "string"
                 }
             },
             "required": [
-                "EXAMPLE_OPERATOR_SECRET_1"
-            ]
-        }
+                "BEARER_TOKEN",
+                "TENANT_URL"
+            ],
+            "title": "SecretsModel",
+            "type": "object"
+        },
+        "source_url": "https://github.com/tdari/sense-pieces/tree/main/pieces/ReloadPiece"
     }
 }
